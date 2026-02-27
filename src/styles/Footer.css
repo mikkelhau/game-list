@@ -1,0 +1,33 @@
+.footer {
+  background-color: rgb(36, 36, 36);
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  padding: 1% 12.5%;
+  margin: 0 auto;
+  width: 75%;
+  height: 12vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  img {
+    height: 100%;
+  }
+  ul {
+    display: flex;
+    justify-items: stretch;
+    flex-direction: column;
+  }
+  li {
+    list-style-type: none;
+  }
+  a {
+    text-decoration: none;
+    color: aliceblue;
+    font-weight: bold;
+  }
+  a:hover {
+    color: rgb(54, 255, 188);
+    transition: 0.5s;
+  }
+}
