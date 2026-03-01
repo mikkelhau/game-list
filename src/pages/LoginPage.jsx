@@ -1,24 +1,64 @@
+import { useState } from "react";
 import "../styles/login.css";
-import { Link } from "react-router";
-import SignupPage from "./SignupPage";
+import { Link, useNavigate } from "react-router";
 
 export default function LoginPage() {
-  function LogInUser() {}
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  async function handleLogin() {
+    setErrorMsg("");
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:5500/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Login failed");
+      }
+
+      if (response.ok && data.session) {
+        localStorage.setItem("sb_access_token", data.session.access_token);
+        console.log("Logged in user:", data.user.email);
+        navigate("/");
+      }
+    } catch (error) {
+      setErrorMsg(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="login">
       <div className="module">
         <h1>Log in to your account</h1>
-        <form action={LogInUser}>
+        {errorMsg && (
+          <p className="error" style={{ color: "red" }}>
+            {errorMsg}
+          </p>
+        )}
+        <form action={handleLogin}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">E-mail</label>
             <input
               type="text"
-              name="username"
-              id="username"
-              placeholder="xXGamer420Xx"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="gamer@mail.com"
               required
-              autoComplete="username"
+              autoComplete="E-mail"
             />
           </div>
           <div className="form-group">
@@ -27,6 +67,8 @@ export default function LoginPage() {
               type="password"
               name="password"
               id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="totallysafepassword123"
               required
               minLength={8}

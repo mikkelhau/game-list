@@ -1,8 +1,67 @@
 import { useState } from "react";
 import "../styles/signup.css";
+import { useNavigate } from "react-router-dom";
 
 export default function SignupPage() {
-  function CreateUser() {}
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [country, setCountry] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSignup() {
+    setErrorMsg("");
+    setLoading(true);
+
+    if (password !== confirmPassword) {
+      setErrorMsg("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5500/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstname,
+          email,
+          password,
+          country,
+          birthdate,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // This catches 400/500 errors from Express/Supabase
+        throw new Error(data.error || "Signup failed");
+      }
+
+      console.log("User created:", data.user);
+
+      if (data.session) {
+        // Case A: Success + Auto-login
+        localStorage.setItem("token", data.session.access_token);
+        navigate("/");
+      } else {
+        // Case B: Success, but no session (maybe confirmation is actually ON?)
+        alert("Account created! Please try logging in manually.");
+        navigate("/login");
+      }
+    } catch (error) {
+      setErrorMsg(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const placeholderMsg = {
     0: "Just gonna Ctrl+V, huh?",
@@ -27,17 +86,22 @@ export default function SignupPage() {
     <div className="signup">
       <div className="module">
         <h1>Create an account</h1>
-        <form action={CreateUser}>
+        <p className="error" style={{ color: "red" }}>
+          {errorMsg}
+        </p>
+        <form action={handleSignup}>
           <div className="form-input-group">
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="firstname">Username/Gamertag</label>
               <input
                 type="text"
-                name="username"
-                id="username"
-                placeholder="xXGamer420Xx"
+                name="firstname"
+                id="firstname"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+                placeholder="MasterChief420"
                 required
-                autoComplete="username"
+                autoComplete="firstname"
               />
             </div>
             <div className="form-group">
@@ -46,6 +110,8 @@ export default function SignupPage() {
                 type="text"
                 name="email"
                 id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="example@mail.com"
                 required
                 autoComplete="email"
@@ -57,6 +123,8 @@ export default function SignupPage() {
                 type="password"
                 name="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="totallysafepassword123"
                 required
                 minLength={8}
@@ -64,11 +132,13 @@ export default function SignupPage() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Confirm password</label>
+              <label htmlFor="confirmPassword">Confirm password</label>
               <input
                 type="password"
-                name="password"
-                id="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder={placeholder}
                 onPaste={handlePaste}
                 required
@@ -77,33 +147,13 @@ export default function SignupPage() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="firstname">Firstname</label>
-              <input
-                type="text"
-                name="firstname"
-                id="firstname"
-                placeholder="Peter"
-                required
-                autoComplete="firstname"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="lastname">Lastname</label>
-              <input
-                type="text"
-                name="lastname"
-                id="lastname"
-                placeholder="Griffin"
-                required
-                autoComplete="lastname"
-              />
-            </div>
-            <div className="form-group">
               <label htmlFor="country">Country</label>
               <input
                 type="text"
                 name="country"
                 id="country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
                 required
                 autoComplete="country"
               />
@@ -114,6 +164,8 @@ export default function SignupPage() {
                 type="date"
                 name="birthdate"
                 id="birthdate"
+                value={birthdate}
+                onChange={(e) => setBirthdate(e.target.value)}
                 required
                 autoComplete="birthdate"
               />
