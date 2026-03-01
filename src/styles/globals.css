@@ -1,0 +1,15 @@
+:root {
+  --primary-color: #ff7f7f;
+  --secondary-color: #36ffbc;
+  --accent-color: #131313;
+  background-color: #242424;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+a {
+  color: #fff;
+}

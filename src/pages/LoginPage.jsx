@@ -1,10 +1,7 @@
 import { useState } from "react";
-import "../styles/Login.css";
+import "../styles/login.css";
 
-export default function Login() {
-  //   const [userName, setUserName] = useState();
-  //   const [password, setPassword] = useState();
-
+export default function LoginPage() {
   function LogInUser() {}
 
   return (
@@ -13,10 +10,20 @@ export default function Login() {
       <div>
         <form action={LogInUser}>
           <label htmlFor="userNameInput">
-            <input type="text" name="" placeholder="Username" />
+            <input
+              type="text"
+              name="usernameInput"
+              placeholder="Username"
+              id="usernameInput"
+            />
           </label>
           <label htmlFor="passwordInput">
-            <input type="password" name="" placeholder="Password" />
+            <input
+              type="password"
+              name="passwordInput"
+              placeholder="Password"
+              id="passwordInput"
+            />
           </label>
           <button type="submit">Log in</button>
         </form>

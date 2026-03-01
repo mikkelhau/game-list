@@ -1,25 +1,31 @@
 import { useState } from "react";
-import "../styles/NavBar.css";
 import logo from "../../src/assets/img/logo.png";
+import { Link } from "react-router-dom";
+import "../styles/navbar.css";
 
 export default function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <div className="nav">
-      <img src={logo} alt="Game List Logo" />
+    <nav className="nav">
+      <div>
+        <Link to="/">
+          <img src={logo} alt="Game List Logo" />
+        </Link>
+      </div>
       <div>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/my-list">My List</a>
+            <Link to="/my-list">My List</Link>
           </li>
           <li>
-            <a href="/profile">Profile</a>
+            <Link to="/profile">Profile</Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link to="/about">About</Link>
           </li>
         </ul>
       </div>
@@ -27,9 +33,9 @@ export default function NavBar() {
         {isLoggedIn ? (
           <a href="_blank">Log out</a>
         ) : (
-          <a href="/login">Log in</a>
+          <Link to="/login">Login</Link>
         )}
       </div>
-    </div>
+    </nav>
   );
 }
