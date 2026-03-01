@@ -5,10 +5,21 @@ export default function SignupPage() {
   function CreateUser() {}
 
   return (
-    <div className="login">
-      <h1>Log in to your account</h1>
+    <div className="signup">
+      <h1>Create an account</h1>
       <div>
         <form action={CreateUser}>
+          <div className="form-group">
+            <label htmlFor="email">E-mail</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="example@mail.com"
+              required
+              autoComplete="email"
+            />
+          </div>
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
@@ -32,7 +43,47 @@ export default function SignupPage() {
               autoComplete="current-password"
             />
           </div>
-          <button type="submit">Log in</button>
+          <div className="form-group">
+            <label htmlFor="firstname">Firstname</label>
+            <input
+              type="text"
+              name="firstname"
+              id="firstname"
+              required
+              autoComplete="firstname"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastname">Lastname</label>
+            <input
+              type="text"
+              name="lastname"
+              id="lastname"
+              required
+              autoComplete="lastname"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="country">Country</label>
+            <input
+              type="text"
+              name="country"
+              id="country"
+              required
+              autoComplete="country"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="birthdate">Date of birth</label>
+            <input
+              type="date"
+              name="birthdate"
+              id="birthdate"
+              required
+              autoComplete="birthdate"
+            />
+          </div>
+          <button type="submit">Sign up</button>
         </form>
       </div>
     </div>
