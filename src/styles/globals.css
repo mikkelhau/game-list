@@ -10,6 +10,8 @@ h2,
 h3,
 p,
 li,
-a {
+a,
+label {
   color: #fff;
+  letter-spacing: 2px;
 }

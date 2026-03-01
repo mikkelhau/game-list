@@ -9,22 +9,29 @@ export default function LoginPage() {
       <h1>Log in to your account</h1>
       <div>
         <form action={LogInUser}>
-          <label htmlFor="userNameInput">
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
             <input
               type="text"
-              name="usernameInput"
-              placeholder="Username"
-              id="usernameInput"
+              name="username"
+              id="username"
+              placeholder="xXGamer420Xx"
+              required
+              autoComplete="username"
             />
-          </label>
-          <label htmlFor="passwordInput">
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
             <input
               type="password"
-              name="passwordInput"
-              placeholder="Password"
-              id="passwordInput"
+              name="password"
+              id="password"
+              placeholder="password123"
+              required
+              minLength={8}
+              autoComplete="current-password"
             />
-          </label>
+          </div>
           <button type="submit">Log in</button>
         </form>
       </div>
