@@ -6,13 +6,13 @@ import "./styles/globals.css";
 
 function App() {
   return (
-    <div className="layout">
+    <>
       <NavBar />
       <main>
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
 

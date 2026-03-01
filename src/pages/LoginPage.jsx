@@ -7,8 +7,8 @@ export default function LoginPage() {
 
   return (
     <div className="login">
-      <h1>Log in to your account</h1>
-      <div>
+      <div className="module">
+        <h1>Log in to your account</h1>
         <form action={LogInUser}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -35,8 +35,8 @@ export default function LoginPage() {
           </div>
           <button type="submit">Log in</button>
         </form>
+        <Link to="/signup">No account? Sign up here</Link>
       </div>
-      <Link to="/signup">No account? Sign up here</Link>
     </div>
   );
 }
