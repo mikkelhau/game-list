@@ -26,7 +26,7 @@ export default function LoginPage() {
               type="password"
               name="password"
               id="password"
-              placeholder="password123"
+              placeholder="totallysafepassword123"
               required
               minLength={8}
               autoComplete="current-password"
