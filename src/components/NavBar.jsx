@@ -27,7 +27,7 @@ export default function NavBar() {
         {isLoggedIn ? (
           <a href="_blank">Log out</a>
         ) : (
-          <a href="_blank">Log in</a>
+          <a href="/login">Log in</a>
         )}
       </div>
     </div>
