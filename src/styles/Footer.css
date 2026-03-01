@@ -1,8 +1,6 @@
 .footer {
   background-color: var(--accent-color);
   color: #fff;
-  position: absolute;
-  bottom: 0;
   padding: 1% 12.5%;
   margin: 0 auto;
   width: 75%;
@@ -11,6 +9,7 @@
   justify-content: space-between;
   align-items: center;
   border-top: 2px solid #fff;
+  margin-top: 4%;
   img {
     height: 100%;
   }

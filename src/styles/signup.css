@@ -52,7 +52,6 @@
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in;
-    margin-bottom: 4%;
   }
 
   button:hover::before {
