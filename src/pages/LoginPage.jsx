@@ -1,5 +1,6 @@
-import { useState } from "react";
 import "../styles/login.css";
+import { Link } from "react-router";
+import SignupPage from "./SignupPage";
 
 export default function LoginPage() {
   function LogInUser() {}
@@ -35,6 +36,7 @@ export default function LoginPage() {
           <button type="submit">Log in</button>
         </form>
       </div>
+      <Link to="/signup">No account? Sign up here</Link>
     </div>
   );
 }
