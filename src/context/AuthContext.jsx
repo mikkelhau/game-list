@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import navigate from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
@@ -17,6 +16,7 @@ export function AuthProvider({ children }) {
 
     if (response.ok) {
       localStorage.setItem("sb_access_token", data.session.access_token);
+      localStorage.setItem("user", JSON.stringify(data.user));
       setUser(data.user);
       return data;
     } else {
@@ -25,18 +25,24 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("sb_access_token");
-
-    if (token) {
-      console.log("Found session token, app is initialized.");
-    }
+    const initAuth = async () => {
+      const token = localStorage.getItem("sb_access_token");
+      if (token) {
+        try {
+          setUser(JSON.parse(localStorage.getItem("user")));
+        } catch (e) {
+          localStorage.removeItem("sb_access_token");
+        }
+      }
+    };
+    initAuth();
   }, []);
 
   const logout = () => {
     localStorage.removeItem("sb_access_token");
+    localStorage.removeItem("user");
     setUser(null);
-    console.log(user, "User logged out");
-    navigate("/login");
+    console.log("Logout triggered and state cleared");
   };
 
   return (
@@ -45,31 +51,3 @@ export function AuthProvider({ children }) {
     </AuthContext>
   );
 }
-
-// import { createContext, useState } from "react";
-
-// export const AuthContext = createContext(null);
-
-// export function AuthProvider({ children }) {
-//   const [user, setUser] = useState(null);
-
-//   const login = async (email, password) => {
-//     const response = await fetch("http://localhost:5500/api/login", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ email, password }),
-//     });
-
-//     if (response.ok) {
-//       const user = await response.json();
-//       setUser(user);
-//       return user;
-//     } else {
-//       throw new Error("Wrong username or password");
-//     }
-//   };
-
-//   return <AuthContext value={{ user, setUser }}>{children}</AuthContext>;
-// }

@@ -4,7 +4,7 @@ import { supabase } from "../supabaseClient.js";
 const router = express.Router();
 
 router.post("/signup", async (req, res) => {
-  const { firstname, email, password, country, birthdate } = req.body;
+  const { name, email, password, country, birthdate } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
@@ -16,7 +16,7 @@ router.post("/signup", async (req, res) => {
       password: password,
       options: {
         data: {
-          firstname: firstname,
+          name: name,
           country: country,
           birthdate: birthdate,
         },

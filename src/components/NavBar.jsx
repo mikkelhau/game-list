@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../../src/assets/img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
+import { AuthContext } from "../context/AuthContext";
+import ButtonSmall from "./ButtonSmall";
 
 export default function NavBar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <nav className="nav">
@@ -30,8 +38,8 @@ export default function NavBar() {
         </ul>
       </div>
       <div>
-        {isLoggedIn ? (
-          <a href="_blank">Log out</a>
+        {user ? (
+          <ButtonSmall onClick={handleLogout} children={"Logout"} />
         ) : (
           <Link to="/login">Login</Link>
         )}

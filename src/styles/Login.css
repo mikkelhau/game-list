@@ -41,89 +41,17 @@
     align-items: center;
     label {
       font-size: 1.5em;
-      margin-bottom: 1%;
+      margin-bottom: 0.2rem;
     }
   }
 
   a {
     font-size: 1.1em;
     transition: 0.3s;
+    margin-top: 4%;
     &:hover {
       color: var(--primary-color);
       transition: 0.3s;
     }
-  }
-
-  button {
-    position: relative;
-    padding: 1.5rem 2.5rem;
-    border-radius: var(--round);
-    border: 3px solid var(--primary-color);
-    font-size: 1.4em;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-weight: bold;
-    letter-spacing: 4px;
-    background: transparent;
-    color: #fff;
-    overflow: hidden;
-    box-shadow: 0 0 0 0 transparent;
-    -webkit-transition: all 0.3s ease-in;
-    -moz-transition: all 0.3s ease-in;
-    transition: all 0.3s ease-in;
-    margin-bottom: 4%;
-  }
-
-  button:hover::before {
-    -webkit-animation: sh02 0.5s 0s linear;
-    -moz-animation: sh02 0.5s 0s linear;
-    animation: sh02 0.5s 0s linear;
-  }
-
-  button::before {
-    content: "";
-    display: block;
-    width: 0px;
-    height: 86%;
-    position: absolute;
-    top: 7%;
-    left: 0%;
-    opacity: 0;
-    background: #fff;
-    -webkit-transform: skewX(-20deg);
-    -moz-transform: skewX(-20deg);
-    -ms-transform: skewX(-20deg);
-    -o-transform: skewX(-20deg);
-    transform: skewX(-20deg);
-  }
-
-  @keyframes sh02 {
-    from {
-      opacity: 0;
-      left: 0%;
-    }
-
-    50% {
-      opacity: 1;
-    }
-
-    to {
-      opacity: 0;
-      left: 100%;
-    }
-  }
-
-  button:active {
-    box-shadow: 0 0 0 0 transparent;
-    -webkit-transition: box-shadow 0.3s ease-in;
-    -moz-transition: box-shadow 0.3s ease-in;
-    transition: box-shadow 0.3s ease-in;
-  }
-  button:hover {
-    background: var(--primary-color);
-    box-shadow: 0 0 30px 5px var(--primary-color);
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
   }
 }

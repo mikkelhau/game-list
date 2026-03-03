@@ -1,12 +1,13 @@
 import { useState } from "react";
 import "../styles/signup.css";
 import { useNavigate } from "react-router-dom";
+import ButtonBig from "../components/ButtonBig";
 
 export default function SignupPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstname, setFirstname] = useState("");
+  const [name, setName] = useState("");
   const [country, setCountry] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -30,7 +31,7 @@ export default function SignupPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstname,
+          name,
           email,
           password,
           country,
@@ -90,18 +91,18 @@ export default function SignupPage() {
           {errorMsg}
         </p>
         <form action={handleSignup}>
-          <div className="form-input-group">
+          <div className="form-fields">
             <div className="form-group">
-              <label htmlFor="firstname">Username/Gamertag</label>
+              <label htmlFor="name">Username/Gamertag</label>
               <input
                 type="text"
-                name="firstname"
-                id="firstname"
-                value={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
+                name="name"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="MasterChief420"
                 required
-                autoComplete="firstname"
+                autoComplete="name"
               />
             </div>
             <div className="form-group">
@@ -171,7 +172,7 @@ export default function SignupPage() {
               />
             </div>
           </div>
-          <button type="submit">Sign up</button>
+          <ButtonBig children={"Sign up"} type={"submit"} />
         </form>
       </div>
     </div>

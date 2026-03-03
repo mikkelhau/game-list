@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import "../styles/login.css";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
+import ButtonBig from "../components/ButtonBig";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -57,13 +58,12 @@ export default function LoginPage() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="totallysafepassword123"
               required
               minLength={8}
               autoComplete="current-password"
             />
           </div>
-          <button type="submit">Log in</button>
+          <ButtonBig children={"Log in"} type={"submit"} />
         </form>
         <Link to="/signup">No account? Sign up here</Link>
       </div>

@@ -3,7 +3,7 @@
   --secondary-color: #36ffbc;
   --accent-color: #131313;
   background-color: #242424;
-  --round: 12px;
+  --round: 0.8em;
   --rounder: 24px;
 }
 
