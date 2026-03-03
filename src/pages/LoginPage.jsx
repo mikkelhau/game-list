@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../styles/login.css";
 import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -9,28 +10,15 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const { login } = useContext(AuthContext);
+
   async function handleLogin() {
     setErrorMsg("");
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5500/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Login failed");
-      }
-
-      if (response.ok && data.session) {
-        localStorage.setItem("sb_access_token", data.session.access_token);
-        console.log("Logged in user:", data.user.email);
-        navigate("/");
-      }
+      await login(email, password);
+      navigate("/");
     } catch (error) {
       setErrorMsg(error.message);
     } finally {
