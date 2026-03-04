@@ -19,6 +19,7 @@ router.post("/signup", async (req, res) => {
           name: name,
           country: country,
           birthdate: birthdate,
+          has_list: false,
         },
       },
     });
