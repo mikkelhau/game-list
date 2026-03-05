@@ -1,35 +1,49 @@
-import { useState } from "react";
-import "../styles/NavBar.css";
+import { useContext, useState } from "react";
 import logo from "../../src/assets/img/logo.png";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/navbar.css";
+import { AuthContext } from "../context/AuthContext";
+import ButtonSmall from "./ButtonSmall";
 
 export default function NavBar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
-    <div className="nav">
-      <img src={logo} alt="Game List Logo" />
+    <nav className="nav">
+      <div>
+        <Link to="/">
+          <img src={logo} alt="Game List Logo" />
+        </Link>
+      </div>
       <div>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/my-list">My List</a>
+            <Link to="/my-list">My List</Link>
           </li>
           <li>
-            <a href="/profile">Profile</a>
+            <Link to="/profile">Profile</Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link to="/about">About</Link>
           </li>
         </ul>
       </div>
       <div>
-        {isLoggedIn ? (
-          <a href="_blank">Log out</a>
+        {user ? (
+          <ButtonSmall onClick={handleLogout} children={"Logout"} />
         ) : (
-          <a href="_blank">Log in</a>
+          <Link to="/login">Login</Link>
         )}
       </div>
-    </div>
+    </nav>
   );
 }

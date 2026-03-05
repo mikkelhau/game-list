@@ -1,31 +1,33 @@
 import { useState } from "react";
-import "../styles/Footer.css";
 import logo from "../../src/assets/img/logo.png";
+import { Link } from "react-router-dom";
+import "../styles/footer.css";
 
 export default function Footer() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="footer">
       <img src={logo} alt="Game List Logo" />
       <div>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/my-list">My List</a>
+            <Link to="/my-list">My List</Link>
           </li>
           <li>
-            <a href="/profile">Profile</a>
+            <Link to="/profile">Profile</Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link to="/about">About</Link>
           </li>
           <li>
             {isLoggedIn ? (
               <a href="_blank">Log out</a>
             ) : (
-              <a href="_blank">Log in</a>
+              <Link to="/login">Login</Link>
             )}
           </li>
         </ul>

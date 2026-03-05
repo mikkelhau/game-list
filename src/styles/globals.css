@@ -1,0 +1,26 @@
+:root {
+  --primary-color: #ff7f7f;
+  --secondary-color: #36ffbc;
+  --accent-color: #131313;
+  background-color: #242424;
+  --round: 0.8em;
+  --rounder: 24px;
+}
+
+main {
+  padding: 3% 0;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+a,
+label {
+  color: #fff;
+  letter-spacing: 2px;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}

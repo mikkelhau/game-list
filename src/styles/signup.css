@@ -1,0 +1,53 @@
+.signup {
+  display: flex;
+  justify-content: center;
+
+  .module {
+    width: fit-content;
+    padding: 2% 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid #fff;
+    border-radius: var(--rounder);
+  }
+
+  h1 {
+    margin-bottom: 3vh;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-fields {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    column-gap: 10%;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    label {
+      font-size: 1.5em;
+      margin-bottom: 0.2rem;
+    }
+  }
+
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 8%;
+    width: 40vh;
+    font-size: 1.4rem;
+    padding: 1rem;
+    font-style: italic;
+  }
+}
