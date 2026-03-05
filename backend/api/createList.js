@@ -16,7 +16,7 @@ router.post("/create-list", async (req, res) => {
     }
 
     const {
-      data: { listData },
+      data: { list },
       error: listError,
     } = await supabase
       .from("lists")
@@ -36,7 +36,7 @@ router.post("/create-list", async (req, res) => {
 
     return res.status(201).json({
       message: "List created successfully.",
-      list: listData,
+      list: list,
       user: updatedUserData.user,
     });
   } catch (error) {
