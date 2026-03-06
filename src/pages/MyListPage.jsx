@@ -25,7 +25,10 @@ export default function MyListsPage() {
               <h2>Your Lists</h2>
             </div>
           ) : (
-            <ButtonBig onClick={handleNavigate} children={"Create a list"} />
+            <div>
+              <h1>You have no list yet!</h1>
+              <ButtonBig onClick={handleNavigate} children={"Create a list"} />
+            </div>
           )}
         </div>
       )}

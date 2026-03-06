@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../styles/signup.css";
 import { useNavigate } from "react-router-dom";
 import ButtonBig from "../components/ButtonBig";
+import { AuthContext } from "../context/AuthContext";
 
 export default function CreateListPage() {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const [title, setTitle] = useState("");
   const [privateList, setPrivateList] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -29,20 +31,14 @@ export default function CreateListPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        // This catches 400/500 errors from Express/Supabase
         throw new Error(data.error || "List creation failed");
       }
 
       console.log("List created:", data.list);
 
       if (data.session) {
-        // Case A: Success + Auto-login
         localStorage.setItem("token", data.session.access_token);
         navigate("/");
-      } else {
-        // Case B: Success, but no session (maybe confirmation is actually ON?)
-        alert("List created! Please try logging in manually.");
-        navigate("/login");
       }
     } catch (error) {
       setErrorMsg(error.message);
