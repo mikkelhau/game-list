@@ -1,0 +1,10 @@
+- Game status: "Want-to-play" or "Completed" (+ "100%'ed" radio button)
+    > Want-to-play: Red border
+    > Completed: Green border
+    > 100%'ed: Rainbow / glowy golden border
+
+- Profile stats: Add stats of completed games & 100%'ed games
+    > Borders of these containers matching the game status styling above
+
+- Friends list?
+- Leaderboard?
