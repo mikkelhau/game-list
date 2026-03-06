@@ -1,9 +1,34 @@
 import React from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import ButtonBig from "../components/ButtonBig";
+import { useNavigate } from "react-router";
 
-export default function MyListPage() {
+export default function MyListsPage() {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/create-list");
+  };
+
   return (
-    <div>
-      <h1>MyListPage</h1>
+    <div className="list-page">
+      {!user ? (
+        <div className="no-list">
+          <p>Please log in to create/view your lists.</p>
+        </div>
+      ) : (
+        <div className="has-list">
+          {user.hasList === true ? (
+            <div>
+              <h2>Your Lists</h2>
+            </div>
+          ) : (
+            <ButtonBig onClick={handleNavigate} children={"Create a list"} />
+          )}
+        </div>
+      )}
     </div>
   );
 }

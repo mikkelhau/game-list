@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 
 export default function HomePage() {
   const [data, setData] = useState(null);
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     fetch("http://localhost:5500/")
