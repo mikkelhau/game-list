@@ -19,7 +19,6 @@ router.post("/signup", async (req, res) => {
           name,
           country,
           birthdate,
-          has_list: false,
         },
       },
     });
