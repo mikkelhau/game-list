@@ -3,6 +3,7 @@ import "../styles/createlist.css";
 import { useNavigate } from "react-router-dom";
 import ButtonBig from "../components/ButtonBig";
 import { AuthContext } from "../context/AuthContext";
+import { supabase } from "../supabaseClient";
 
 export default function CreateListPage() {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ export default function CreateListPage() {
       }
 
       if (response.ok) {
+        supabase.auth.refreshSession();
         alert("List created!");
         navigate("/my-lists");
         return data;
