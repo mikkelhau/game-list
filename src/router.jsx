@@ -3,7 +3,8 @@ import App from "./App";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
-import MyListPage from "./pages/MyListPage";
+import CreateListPage from "./pages/CreateListPage";
+import MyListsPage from "./pages/MyListsPage";
 import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
@@ -17,7 +18,8 @@ export const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "signup", element: <SignupPage /> },
       { path: "login", element: <LoginPage /> },
-      { path: "my-list", element: <MyListPage /> },
+      { path: "create-list", element: <CreateListPage /> },
+      { path: "my-lists", element: <MyListsPage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "about", element: <AboutPage /> },
       { path: "*", element: <ErrorPage /> },

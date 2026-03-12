@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../../src/assets/img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/footer.css";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Footer() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <div className="footer">
@@ -15,7 +22,7 @@ export default function Footer() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/my-list">My List</Link>
+            <Link to="/my-lists">My Lists</Link>
           </li>
           <li>
             <Link to="/profile">Profile</Link>
@@ -24,8 +31,8 @@ export default function Footer() {
             <Link to="/about">About</Link>
           </li>
           <li>
-            {isLoggedIn ? (
-              <a href="_blank">Log out</a>
+            {user ? (
+              <Link onClick={handleLogout}>Log out</Link>
             ) : (
               <Link to="/login">Login</Link>
             )}
