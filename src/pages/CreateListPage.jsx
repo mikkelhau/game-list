@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import "../styles/signup.css";
+import "../styles/createlist.css";
 import { useNavigate } from "react-router-dom";
 import ButtonBig from "../components/ButtonBig";
 import { AuthContext } from "../context/AuthContext";
@@ -17,12 +17,13 @@ export default function CreateListPage() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5500/api/create-list", {
+      const response = await fetch("http://localhost:5500/api/createlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          user_id: user.id,
           title,
           privateList,
         }),
@@ -34,23 +35,22 @@ export default function CreateListPage() {
         throw new Error(data.error || "List creation failed");
       }
 
-      console.log("List created:", data.list);
-
-      if (data.session) {
-        localStorage.setItem("token", data.session.access_token);
-        navigate("/");
+      if (response.ok) {
+        alert("List created!");
+        navigate("/my-lists");
+        return data;
       }
     } catch (error) {
-      setErrorMsg(error.message);
+      setErrorMsg(error.message, "FAILED");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="signup">
+    <div className="create-list">
       <div className="module">
-        <h1>Create an account</h1>
+        <h1>Create a list</h1>
         <p className="error" style={{ color: "red" }}>
           {errorMsg}
         </p>
@@ -69,18 +69,17 @@ export default function CreateListPage() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="visibility">Make list private?</label>
+              <label htmlFor="privateList">Make list private?</label>
               <input
-                type="radio"
-                name="visibility"
-                id="visibility"
-                value={privateList}
-                onChange={(e) => setPrivateList(e.target.value)}
-                required
+                type="checkbox"
+                name="privateList"
+                id="privateList"
+                checked={privateList}
+                onChange={(e) => setPrivateList(e.target.checked)}
               />
             </div>
           </div>
-          <ButtonBig children={"Create List"} onClick={"handleListCreation"} />
+          <ButtonBig children={"Create List"} type={"submit"} />
         </form>
       </div>
     </div>

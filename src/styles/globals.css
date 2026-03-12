@@ -5,6 +5,7 @@
   background-color: #242424;
   --round: 0.8em;
   --rounder: 24px;
+  min-height: 100vh;
 }
 
 main {

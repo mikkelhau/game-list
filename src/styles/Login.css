@@ -13,7 +13,7 @@
   }
 
   h1 {
-    margin-bottom: 3vh;
+    margin-bottom: 2rem;
   }
 
   form {
@@ -28,7 +28,7 @@
     appearance: none;
     border: none;
     border-radius: var(--round);
-    margin-bottom: 8%;
+    margin-bottom: 2.5rem;
     width: 22vw;
     font-size: 1.4rem;
     padding: 1rem;
@@ -42,7 +42,7 @@
     align-items: center;
     label {
       font-size: 1.5em;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
   }
 

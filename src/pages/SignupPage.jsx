@@ -42,18 +42,16 @@ export default function SignupPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        // This catches 400/500 errors from Express/Supabase
-        throw new Error(data.error || "Signup failed");
+        throw new Error("Signup failed");
       }
 
       console.log("User created:", data.user);
 
-      if (data.session) {
-        // Case A: Success + Auto-login
-        localStorage.setItem("token", data.session.access_token);
-        navigate("/");
-      } else {
-        // Case B: Success, but no session (maybe confirmation is actually ON?)
+      // if (data.session) {
+      //   localStorage.setItem("token", data.session.access_token);
+      //   navigate("/");
+      // } else {
+      if (data.user) {
         alert("Account created! Please try logging in manually.");
         navigate("/login");
       }
