@@ -8,10 +8,11 @@ router.post("/add-game", async (req, res) => {
     req.body;
 
   try {
+    const token = req.headers.authorization?.split(" ")[1];
     const {
       data: { user },
       error: authError,
-    } = await supabase.auth.getUser();
+    } = await supabase.auth.getUser(token);
     if (authError || !user) {
       return res.status(401).json({ error: "Unauthorized" });
     }

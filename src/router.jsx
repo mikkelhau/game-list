@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
       { path: "login", element: <LoginPage /> },
       { path: "create-list", element: <CreateListPage /> },
       { path: "list-overview", element: <ListOverview /> },
-      { path: "game-list", element: <GameListPage /> },
+      { path: "game-list/:id", element: <GameListPage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "about", element: <AboutPage /> },
       { path: "*", element: <ErrorPage /> },
