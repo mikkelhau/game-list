@@ -3,6 +3,7 @@ import cors from "cors";
 import loginRouter from "./api/login.js";
 import signupRouter from "./api/signup.js";
 import createListRouter from "./api/createlist.js";
+import fetchUserListsRouter from "./api/fetchUserLists.js";
 
 const app = express();
 const PORT = process.env.PORT || 5500;
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 app.use("/api", loginRouter);
 app.use("/api", signupRouter);
 app.use("/api", createListRouter);
+app.use("/api", fetchUserListsRouter);
 
 // 3. Start Server (Last step)
 app.listen(PORT, () => {
