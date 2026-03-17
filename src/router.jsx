@@ -4,8 +4,9 @@ import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import CreateListPage from "./pages/CreateListPage";
-import GameListPage from "./pages/GameListPage";
 import ListOverview from "./pages/ListOverview";
+import GameListPage from "./pages/GameListPage";
+import AddGamePage from "./pages/AddGamePage";
 import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
@@ -20,8 +21,9 @@ export const router = createBrowserRouter([
       { path: "signup", element: <SignupPage /> },
       { path: "login", element: <LoginPage /> },
       { path: "create-list", element: <CreateListPage /> },
-      { path: "list-overview", element: <ListOverview /> },
-      { path: "game-list/:id", element: <GameListPage /> },
+      { path: "my-lists", element: <ListOverview /> },
+      { path: "list/:id", element: <GameListPage /> },
+      { path: "list/:id/add-game", element: <AddGamePage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "about", element: <AboutPage /> },
       { path: "*", element: <ErrorPage /> },

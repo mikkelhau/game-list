@@ -3,7 +3,7 @@ import "../styles/signup.css";
 import { useNavigate } from "react-router-dom";
 import ButtonBig from "../components/ButtonBig";
 
-export default function AddGamesPage() {
+export default function AddGamePage() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [developer, setDeveloper] = useState("");
@@ -48,7 +48,6 @@ export default function AddGamesPage() {
                 id="developer"
                 value={developer}
                 onChange={(e) => setDeveloper(e.target.value)}
-                required
               />
             </div>
             <div className="form-group">
@@ -59,7 +58,6 @@ export default function AddGamesPage() {
                 id="platform"
                 value={platform}
                 onChange={(e) => setPlatform(e.target.value)}
-                required
               />
             </div>
             <div className="form-group">
@@ -70,7 +68,6 @@ export default function AddGamesPage() {
                 id="completiondate"
                 value={completiondate}
                 onChange={(e) => setCompletionDate(e.target.value)}
-                required
               />
             </div>
             <div className="form-group">
@@ -92,7 +89,6 @@ export default function AddGamesPage() {
                 id="review"
                 value={review}
                 onChange={(e) => setReview(e.target.value)}
-                required
               />
             </div>
             <div className="form-group">
@@ -103,7 +99,7 @@ export default function AddGamesPage() {
                 id="image"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
-                required
+                placeholder="Paste game image URL here"
               />
             </div>
           </div>
