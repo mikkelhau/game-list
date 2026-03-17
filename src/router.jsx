@@ -4,7 +4,8 @@ import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import CreateListPage from "./pages/CreateListPage";
-import MyListsPage from "./pages/MyListsPage";
+import GameListPage from "./pages/GameListPage";
+import ListOverview from "./pages/ListOverview";
 import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
@@ -19,7 +20,8 @@ export const router = createBrowserRouter([
       { path: "signup", element: <SignupPage /> },
       { path: "login", element: <LoginPage /> },
       { path: "create-list", element: <CreateListPage /> },
-      { path: "my-lists", element: <MyListsPage /> },
+      { path: "list-overview", element: <ListOverview /> },
+      { path: "game-list", element: <GameListPage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "about", element: <AboutPage /> },
       { path: "*", element: <ErrorPage /> },
