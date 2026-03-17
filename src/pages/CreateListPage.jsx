@@ -39,7 +39,8 @@ export default function CreateListPage() {
       if (response.ok) {
         supabase.auth.refreshSession();
         alert("List created!");
-        navigate("/my-lists");
+        navigate("/list-overview");
+        console.log("List created successfully:", data);
         return data;
       }
     } catch (error) {
