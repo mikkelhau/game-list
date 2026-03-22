@@ -3,7 +3,8 @@ import { supabase } from "../supabaseClient.js";
 
 const router = express.Router();
 
-router.post("/add-game", async (req, res) => {
+router.post("/list/:listId/add-game", async (req, res) => {
+  const { listId } = req.params;
   const { title, developer, platform, completiondate, rating, review, image } =
     req.body;
 
@@ -20,14 +21,22 @@ router.post("/add-game", async (req, res) => {
     const { data: list, error: userListError } = await supabase
       .from("lists")
       .select("id")
+      .eq("id", listId)
       .eq("user_id", user.id)
       .single();
     if (userListError) throw userListError;
 
+    if (!list) {
+      return res
+        .status(404)
+        .json({ error: "List not found or you do not have permission." });
+    }
+
     const { data: newGame, error: newGameError } = await supabase
       .from("games")
       .insert({
-        list_id: list.id,
+        list_id: listId,
+        user_id: user.id,
         title,
         developer,
         platform,
@@ -36,7 +45,6 @@ router.post("/add-game", async (req, res) => {
         review,
         image,
       })
-      .eq("list_id", list.id)
       .select("*")
       .single();
     if (newGameError) throw newGameError;

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "../styles/signup.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ButtonBig from "../components/ButtonBig";
 
 export default function AddGamePage() {
   const navigate = useNavigate();
+  const { listId } = useParams();
   const [title, setTitle] = useState("");
   const [developer, setDeveloper] = useState("");
   const [platform, setPlatform] = useState("");
@@ -18,6 +19,33 @@ export default function AddGamePage() {
   async function handleAddGame() {
     setErrorMsg("");
     setLoading(true);
+
+    const response = await fetch(
+      `http://localhost:5500/api/list/${listId}/add-game`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          developer,
+          platform,
+          completiondate,
+          rating,
+          review,
+          image,
+        }),
+      },
+    );
+
+    const result = await response.json();
+    if (result.error) {
+      setErrorMsg(result.error);
+    } else {
+      navigate(`/list/${listId}`);
+    }
+    setLoading(false);
   }
 
   return (
